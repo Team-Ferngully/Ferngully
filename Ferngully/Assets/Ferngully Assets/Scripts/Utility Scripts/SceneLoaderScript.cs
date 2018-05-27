@@ -40,7 +40,7 @@ public class SceneLoaderScript : MonoBehaviour {
     /// </summary>
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetSceneByBuildIndex(0).buildIndex);
+        SceneManager.LoadScene(0);
     }
 
     /// <summary>
@@ -49,6 +49,7 @@ public class SceneLoaderScript : MonoBehaviour {
     /// <param name="sceneName"></param>
     public void LoadSceneByName(string sceneName)
     {
-        SceneManager.LoadScene(SceneManager.GetSceneByName(sceneName).buildIndex);
+        //Debug.Log("target scene name: " + sceneName);
+        SceneManager.LoadScene(sceneName);
     }
 }
