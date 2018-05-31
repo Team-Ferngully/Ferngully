@@ -150,12 +150,20 @@ MonoBehaviour:
   wallSlideSpeed: 1
   maxWallJumps: 10000
   wallJumpSpeedX: 8
-  wallJumpSpeedY: 5
+  wallJumpSpeedY: 4
   wallJumpTime: 0.2
   maxDashCount: 1
   dashSpeed: 12
   dashTime: 0.1
   dashCooldown: 0.3
+  isDashBonusOn: 0
+  bonusDashes: 1
+  isJumpBonusOn: 0
+  jumpSpeedBonus: 2
+  isWallJumpBonusOn: 0
+  jumpSpeedXBonus: 1
+  jumpSpeedYBonus: 3
+  slowSlide: 1
 --- !u!114 &114882301992539750
 MonoBehaviour:
   m_ObjectHideFlags: 1

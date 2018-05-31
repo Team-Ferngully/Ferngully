@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class CharacterControllerScript : MonoBehaviour {
+public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
 
     private SpriteRenderer spriteRenderer;  //this character's sprite renderer
     private Rigidbody2D rigidbody2d;        //this character's rigidbody
@@ -46,6 +46,17 @@ public class CharacterControllerScript : MonoBehaviour {
     public float dashCooldown = 0.02f;  //the time before a second dash can be done
     private bool isDashAllowed = true;  //is the character allowed to dash at given moment
 
+    [Header("Dash Power Up")]
+    public bool isDashBonusOn;          //is the dash power up in effect currently
+    public int bonusDashes;             //how many dashes are added to the max dash count
+    [Header("Jump Power Up")]
+    public bool isJumpBonusOn;          //is the jump power up in effect currently
+    public float jumpSpeedBonus;        //how much speed is added to the default jump speed
+    [Header("Wall Jump Power Up")]
+    public bool isWallJumpBonusOn;      //is the wall jump power up in effect currently
+    public float jumpSpeedXBonus;       //how much horizontal speed is added to default wall jump
+    public float jumpSpeedYBonus;       //how much vertical speed is added to default wall jump
+    public bool slowSlide;              //is wall sliding very slow (overrides dafault behaviour)
 
 	// Use this for initialization
 	void Start ()
@@ -55,6 +66,11 @@ public class CharacterControllerScript : MonoBehaviour {
         rigidbody2d = GetComponent<Rigidbody2D>();
         groundChecker = GetComponent<GroundCheckerScript>();
         wallChecker = GetComponent<WallCheckerScript>();
+
+        PowerUpHolderScript.instance.SetPowerUpChangeListener(this);
+        OnPowerUpsChanged();
+        //make an animation controller decider to handle which controller to use
+            //run it in onpowerUpsChanged...
 	}
 	
 	// Update is called once per frame
@@ -90,7 +106,7 @@ public class CharacterControllerScript : MonoBehaviour {
         //set movement vector's horizontal x axis
         movement = rigidbody2d.velocity;
         movement.x = horizontalInput * movementSpeed;
-
+        
         //make sure character is facing the correct direction based on input
         FlipCharacter(horizontalInput);
     }
@@ -135,7 +151,14 @@ public class CharacterControllerScript : MonoBehaviour {
         }
         else if(isGrounded == true)
         {
-            movement.y = jumpSpeed;
+            if(isJumpBonusOn == true)
+            {
+                movement.y = jumpSpeed+jumpSpeedBonus;
+            }
+            else
+            {
+                movement.y = jumpSpeed;
+            }          
             //reset long jumping
             isLongJumpSpent = false;
             jumpTimer = 0;
@@ -162,7 +185,15 @@ public class CharacterControllerScript : MonoBehaviour {
         }
         else if(jumpTimer < longJumpTime && isLongJumpSpent == false)
         {
-            movement.y = jumpSpeed;
+            if(isJumpBonusOn == true)
+            {
+                movement.y = jumpSpeed+jumpSpeedBonus;
+            }
+            else
+            {
+                movement.y = jumpSpeed;
+            }
+            
             jumpTimer += Time.deltaTime;
             if(jumpTimer > longJumpTime)
             {
@@ -201,8 +232,19 @@ public class CharacterControllerScript : MonoBehaviour {
         if (wallChecker.IsInContactWithWall(new Vector2(movement.x, 0)) == true && isGrounded == false)   //&& isGrounded == false
         {
             isTouchingWall = true;
-            if(rigidbody2d.velocity.y <= 0)
-                movement.y = -wallSlideSpeed;
+            
+            if (rigidbody2d.velocity.y <= 0)
+            {
+                //wall jump power up makes sliding very slow
+                if(isWallJumpBonusOn == true && slowSlide == true)
+                {
+                    movement.y = 0;
+                }
+                else
+                {
+                    movement.y = -wallSlideSpeed;
+                }              
+            }  
         }
         else
         {
@@ -219,19 +261,30 @@ public class CharacterControllerScript : MonoBehaviour {
         //spend one wall jump
         currentWallJumps--;
 
+        //if walljump bonus is on, add bonuses to jump speeds
+        float usedWallJumpSpeedX = wallJumpSpeedX;
+        float usedWallJumpSpeedY = wallJumpSpeedY;
+
+        if (isWallJumpBonusOn == true)
+        {
+            usedWallJumpSpeedX += jumpSpeedXBonus;
+            usedWallJumpSpeedY += jumpSpeedYBonus;
+        }
+        
+
         //see which way to jump horizontally based on character movement
         if(movement.x > 0)
         {
-            movement.x = -wallJumpSpeedX;
+            movement.x = -usedWallJumpSpeedX;
         }
         else
         {
-            movement.x = wallJumpSpeedX;
+            movement.x = usedWallJumpSpeedX;
         }
         //flip character based on new horizontal movement
         FlipCharacter(movement.x);
         //add updwards speed
-        movement.y = wallJumpSpeedY;
+        movement.y = usedWallJumpSpeedY;
 
         //wait until jump time is done before enabling controls again
         yield return new WaitForSeconds(wallJumpTime);
@@ -286,13 +339,16 @@ public class CharacterControllerScript : MonoBehaviour {
         rigidbody2d.gravityScale = originalGravityScale;
         areControlsDisabled = false;
 
-        //add cooldown to dashing / dont allow dashing yet
-        isDashAllowed = false;
-        yield return new WaitForSeconds(dashCooldown);
+        //IF grounded add cooldown to dashing / dont allow dashing yet
+        if(isGrounded == true)
+        {
+            isDashAllowed = false;
+            yield return new WaitForSeconds(dashCooldown);
 
-        //allow dashing again
-        isDashAllowed = true;
-
+            //allow dashing again
+            isDashAllowed = true;
+        }
+        
         yield return null;
     }
 
@@ -304,7 +360,13 @@ public class CharacterControllerScript : MonoBehaviour {
         if(groundChecker.IsCharacterGrounded() == true)
         {
             isGrounded = true;
+            
             currentDashCount = maxDashCount;
+            //add dash power up dashes to current count if power up is on
+            if (isDashBonusOn == true)
+            {
+                currentDashCount += bonusDashes;
+            }
             //jump reset?
             currentWallJumps = maxWallJumps;
             //long jumping
@@ -317,4 +379,14 @@ public class CharacterControllerScript : MonoBehaviour {
         }
     }
 
+    public void OnPowerUpsChanged()
+    {
+        //read which power ups are on and apply them
+
+        isJumpBonusOn = PowerUpHolderScript.instance.GetJumpPowerUpOn();
+        isDashBonusOn = PowerUpHolderScript.instance.GetDashPowerUpOn();
+        isWallJumpBonusOn = PowerUpHolderScript.instance.GetWallJumpPowerUpOn();
+        
+        //figure out which animator to use?
+    }
 }
