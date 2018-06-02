@@ -20,6 +20,8 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
     private GroundCheckerScript groundChecker;  //handles this character's ground checking
     private WallCheckerScript wallChecker;      //handles checking whether this character is touching a wall
 
+    private PlayerAnimHandler animHandler;
+
     [Header("Basic Movement Settings")]
     public float movementSpeed = 10f;       //how fast the character can move horizontally
     public float jumpSpeed = 10f;           //defines how high the character can jump
@@ -66,6 +68,7 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         rigidbody2d = GetComponent<Rigidbody2D>();
         groundChecker = GetComponent<GroundCheckerScript>();
         wallChecker = GetComponent<WallCheckerScript>();
+        animHandler = GetComponent<PlayerAnimHandler>();
 
         PowerUpHolderScript.instance.SetPowerUpChangeListener(this);
         OnPowerUpsChanged();
@@ -86,9 +89,14 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
 
         //apply wall sliding if it's relevant at this frame
         HandleWallSliding();
+        //anim for wall sliding
+        //animHandler.SetIsWallSliding(isTouchingWall);
 
         //apply movement vector to rigidbody's velocity
         rigidbody2d.velocity = movement;
+
+        //anim for running
+        //animHandler.SetIsRunning(movement.x != 0);
     }
 
     /// <summary>
@@ -106,6 +114,9 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         //set movement vector's horizontal x axis
         movement = rigidbody2d.velocity;
         movement.x = horizontalInput * movementSpeed;
+
+        //tell animator is player running
+        animHandler.SetIsRunning(movement.x != 0);
         
         //make sure character is facing the correct direction based on input
         FlipCharacter(horizontalInput);
@@ -251,6 +262,9 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
             //is there a way to delay this for a very small time..? Maybe not needed
             isTouchingWall = false;
         }
+
+        //tell animator is player touching a wall
+        animHandler.SetIsWallSliding(isTouchingWall);
     }
 
     //Handles wall-jumping
@@ -302,6 +316,8 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         //spend one dash
         currentDashCount--;
 
+        animHandler.SetIsDashing(true);
+
         //dash in the direction the character is facing
         //some other direction check might be better..
         if (spriteRenderer.flipX)
@@ -348,7 +364,8 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
             //allow dashing again
             isDashAllowed = true;
         }
-        
+
+        animHandler.SetIsDashing(false);
         yield return null;
     }
 
@@ -377,6 +394,9 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         {
             isGrounded = false;
         }
+
+        //anim for jumping
+        animHandler.SetIsJumping(!isGrounded);
     }
 
     public void OnPowerUpsChanged()
@@ -386,7 +406,8 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         isJumpBonusOn = PowerUpHolderScript.instance.GetJumpPowerUpOn();
         isDashBonusOn = PowerUpHolderScript.instance.GetDashPowerUpOn();
         isWallJumpBonusOn = PowerUpHolderScript.instance.GetWallJumpPowerUpOn();
-        
-        //figure out which animator to use?
+
+        //figure out which animator to use
+        animHandler.PickCorrectAnimator(isJumpBonusOn, isDashBonusOn, isWallJumpBonusOn);
     }
 }
