@@ -233,7 +233,8 @@ MonoBehaviour:
   leftPoint: {fileID: 4448472184934638}
   rightPoint: {fileID: 4569117002633766}
   centerPoint: {fileID: 4742662341548754}
-  isMoving: 0
+  useFadeInAnimation: 1
+  fadeInAnimTime: 0.5
 --- !u!212 &212160849431976258
 SpriteRenderer:
   m_ObjectHideFlags: 1

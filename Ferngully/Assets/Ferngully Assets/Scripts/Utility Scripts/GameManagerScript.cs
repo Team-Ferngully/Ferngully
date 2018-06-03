@@ -9,6 +9,7 @@ public class GameManagerScript : MonoBehaviour {
 
     public GameObject currentPlayerPrefab;  //the player model/version we want to use/spawn
     public int targetSceneLinkId;   //used to store which scene link is used for spawning when entering scene
+    public bool enterSceneWithoutDirection; //if scene is reloaded and not entered from another scene
     private GameObject playerInstance;  //the player gameobject which is in use currently
 
 
@@ -65,4 +66,21 @@ public class GameManagerScript : MonoBehaviour {
     {
         playerInstance = player;
     }
+
+    /// <summary>
+    /// Sets whether a directional transition is wanted when a scene is loaded.
+    /// For example scene1 to scene 2 transition should be directional enter.
+    /// Directionless transition could be used in reloading the same scene.
+    /// </summary>
+    /// <param name="isEnteringFromDirection"></param>
+    public void SetEnteringFromDirection(bool isEnteringFromDirection)
+    {
+        enterSceneWithoutDirection = isEnteringFromDirection;
+    }
+
+    /// <summary>
+    /// Gets whether a directional transition should be used in scene load.
+    /// </summary>
+    /// <returns></returns>
+    public bool GetEnteringFromDirection() { return enterSceneWithoutDirection; }
 }

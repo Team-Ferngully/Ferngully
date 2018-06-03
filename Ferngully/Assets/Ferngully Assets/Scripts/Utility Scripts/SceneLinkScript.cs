@@ -50,6 +50,9 @@ public class SceneLinkScript : MonoBehaviour, IAnimFinishedListener {
         GameManagerScript.instance.SetTargetSceneLinkId(targetLinkId);
         //gamemanagerscript instance set current player prefab...
 
+        //set entering to be from a direction (eg scene1 -> scene2 would happen from left to right)
+        GameManagerScript.instance.SetEnteringFromDirection(true);
+
         if(useExitAnimation == false)
         {
             //simply load target scene if no animation is used
@@ -89,24 +92,33 @@ public class SceneLinkScript : MonoBehaviour, IAnimFinishedListener {
         playerSpawner.SpawnPlayer(GameManagerScript.instance.GetCurrentPlayerPrefab());
 	
         //if scene enter animation is used, start it
-        if(useEnterAnimation == true)
+        if(useEnterAnimation == true )
         {
-            if (EnterAnimation == EnterAnimations.toRight)
+            if( GameManagerScript.instance.GetEnteringFromDirection() == true )
             {
-                TransitionAnimScript.instance.SlideFromCenterToRight();
+                if (EnterAnimation == EnterAnimations.toRight)
+                {
+                    TransitionAnimScript.instance.SlideFromCenterToRight();
+                }
+                else if (EnterAnimation == EnterAnimations.toLeft)
+                {
+                    TransitionAnimScript.instance.SlideFromCenterToLeft();
+                }
+                else if (EnterAnimation == EnterAnimations.toUp)
+                {
+                    TransitionAnimScript.instance.SlideFromCenterToUp();
+                }
+                else if (EnterAnimation == EnterAnimations.toDown)
+                {
+                    TransitionAnimScript.instance.SlideFromCenterToDown();
+                }
             }
-            else if (EnterAnimation == EnterAnimations.toLeft)
+            else
             {
-                TransitionAnimScript.instance.SlideFromCenterToLeft();
+                //fade in anim
+                TransitionAnimScript.instance.FadeIn();
             }
-            else if (EnterAnimation == EnterAnimations.toUp)
-            {
-                TransitionAnimScript.instance.SlideFromCenterToUp();
-            }
-            else if (EnterAnimation == EnterAnimations.toDown)
-            {
-                TransitionAnimScript.instance.SlideFromCenterToDown();
-            }
+            
         }
     }
 

@@ -16,14 +16,20 @@ public class TransitionAnimScript : MonoBehaviour {
     public float transitionSpeed = 5f;  //how fast the black box moves to its target destination
     public Transform upPoint, downPoint, leftPoint, rightPoint, centerPoint;    //all the from and to points
     private Transform destinationPoint; //used for setting the current destination for black box
-    public bool isMoving = false;       //is the black box moving / allowed to move
+    private bool isMoving = false;       //is the black box moving / allowed to move
 
+    public bool useFadeInAnimation;     //are fade-in animations on
+    public float fadeInAnimTime = 1f;   //how long it takes for fade in to complete
+
+    private SpriteRenderer sr;  //the sprite renderer of transition sprite
     private IAnimFinishedListener animListener; //the listener to tell when an animation is finished
 
     private void Awake()
     {
         //setting static reference to be this instance
         instance = this;
+        //get reference to transition sprite's renderer
+        sr = transitionSprite.GetComponent<SpriteRenderer>();
     }
 	
 	// Update is called once per frame
@@ -101,6 +107,54 @@ public class TransitionAnimScript : MonoBehaviour {
     public void SlideFromCenterToDown()
     {
         SlideTransitionSprite(centerPoint, downPoint);
+    }
+
+    /// <summary>
+    /// Starts a fade in animation ie starting from a black screen transition into
+    /// a clear screen.
+    /// </summary>
+    public void FadeIn()
+    {
+        //if fade in animation is set to be used, start the animation
+        if(useFadeInAnimation == true)
+        {
+            StartCoroutine("HandleFadeIn");
+        }
+    }
+
+    /// <summary>
+    /// Makes the transition sprite appear fully visible in the center of the screen
+    /// and then slowly starts to decrease the sprite's alpha.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator HandleFadeIn()
+    {        
+        //sprite to center
+        transitionSprite.position = centerPoint.position;
+
+        //lerp sprite alpha from max to zero in fadeInTime
+        Color spriteColor = sr.color;
+        float alpha;
+        float currentTime = 0f;
+
+        while (currentTime < fadeInAnimTime)
+        {
+            //if another anim (slide) starts, break
+            if(isMoving == true)
+            {
+                break;
+            }
+
+            alpha = Mathf.Lerp(1f, 0f, currentTime / fadeInAnimTime);
+            sr.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, alpha);
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+
+        //put sprite away from the middle and set alpha to normal
+        transitionSprite.position = rightPoint.position;
+        sr.color = spriteColor;
+        yield return null;
     }
 
     /// <summary>
