@@ -74,13 +74,21 @@ public class PowerUpScript : MonoBehaviour {
     private IEnumerator HandlePowerUpApplying()
     {
         //close door
-        //disable player
-        player.SetActive(false);
+
+        //get player position (and which way sprite is facing)
+        Vector3 playerPosition = player.transform.position;
+        bool isPlayerFacingLeft = player.GetComponent<SpriteRenderer>().flipX;
+
+        //delete player
+        GameObject.Destroy(player);
+
         //animate "power up installing"?
         yield return new WaitForSeconds(animationTime);
         //open door
-        //enable player
-        player.SetActive(true);
+
+        //spawn player
+        player = Instantiate(GameManagerScript.instance.GetCurrentPlayerPrefab(), playerPosition, transform.rotation);
+        player.GetComponent<SpriteRenderer>().flipX = isPlayerFacingLeft;
 
         yield return null;
     }
