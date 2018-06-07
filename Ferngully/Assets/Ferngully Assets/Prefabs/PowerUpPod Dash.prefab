@@ -78,9 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b6318b4bd326c44e8bb146ff8db1799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyDashPowerUp: 1
-  applyJumpPowerUp: 0
-  applyWallJumpPowerUp: 0
+  powerUpType: 1
   animationTime: 3
 --- !u!212 &212852154933931680
 SpriteRenderer:
