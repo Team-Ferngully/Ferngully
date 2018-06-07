@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PowerUpScript : MonoBehaviour {
 
-    //the power ups that can be applied when player triggers this power up
-    public bool applyDashPowerUp;
-    public bool applyJumpPowerUp;
-    public bool applyWallJumpPowerUp;
+    public enum PowerUpTypes { Jump, Dash, WallJump };  //all the selectable power up types
+    public PowerUpTypes powerUpType;    //the power up type selected to apply to the player
 
     private bool isPowerUpActive;   //will this power up apply power up to player on contact
     private GameObject player;      //the player that touches this power up
@@ -28,17 +26,17 @@ public class PowerUpScript : MonoBehaviour {
             //store the player gameobject for later disabling/enabling
             player = collision.gameObject;
             //handle power up saving and applying...
-            if (applyDashPowerUp == true)
+            if (powerUpType == PowerUpTypes.Dash)
             {
                 PowerUpHolderScript.instance.SetDashPowerUpOn();
             }
 
-            if (applyJumpPowerUp == true)
+            if (powerUpType == PowerUpTypes.Jump)
             {
                 PowerUpHolderScript.instance.SetJumpPowerUpOn();
             }
 
-            if (applyWallJumpPowerUp == true)
+            if (powerUpType == PowerUpTypes.WallJump)
             {
                 PowerUpHolderScript.instance.SetWallJumpPowerUpOn();
             }
@@ -52,15 +50,15 @@ public class PowerUpScript : MonoBehaviour {
     private void HandlePowerUpInit()
     {
         //check if power up has been used already -> make power up inactive...	
-        if (applyDashPowerUp == true && PowerUpHolderScript.instance.GetDashPowerUpOn() == true)
+        if (powerUpType == PowerUpTypes.Dash && PowerUpHolderScript.instance.GetDashPowerUpOn() == true)
         {
             isPowerUpActive = false;
         }
-        else if (applyJumpPowerUp == true && PowerUpHolderScript.instance.GetJumpPowerUpOn() == true)
+        else if (powerUpType == PowerUpTypes.Jump && PowerUpHolderScript.instance.GetJumpPowerUpOn() == true)
         {
             isPowerUpActive = false;
         }
-        else if (applyWallJumpPowerUp == true && PowerUpHolderScript.instance.GetWallJumpPowerUpOn() == true)
+        else if (powerUpType == PowerUpTypes.WallJump && PowerUpHolderScript.instance.GetWallJumpPowerUpOn() == true)
         {
             isPowerUpActive = false;
         }
