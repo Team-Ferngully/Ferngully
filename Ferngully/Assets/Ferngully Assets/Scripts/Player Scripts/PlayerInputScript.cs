@@ -5,9 +5,10 @@ using UnityEngine;
 /// <summary>
 /// Handles catching player's input ie keypresses etc.
 /// </summary>
-public class PlayerInputScript : MonoBehaviour {
+public class PlayerInputScript : MonoBehaviour, IPauseListener{
 
     private CharacterControllerScript characterController;  //the controller we pass our input for
+    private bool isListeningForInput = true;    //are we currenly listening for player's input (button presses etc)
 
     //check unity settings what these names mean/are
     public string jumpButtonName = "Jump";
@@ -16,13 +17,17 @@ public class PlayerInputScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        characterController = GetComponent<CharacterControllerScript>();	
+        characterController = GetComponent<CharacterControllerScript>();
+
+        //set this as a pause listener
+        GameManagerScript.instance.SetPauseListener(this);
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        HandleInputs();
+        if(isListeningForInput == true)
+            HandleInputs();
 	}
 
     /// <summary>
@@ -86,5 +91,16 @@ public class PlayerInputScript : MonoBehaviour {
             characterController.Dash();
         }
     }
-    
+
+    public void OnGamePause()
+    {
+        //stop listening for input
+        isListeningForInput = false;
+    }
+
+    public void OnGameUnpause()
+    {
+        //resume listening for input
+        isListeningForInput = true;
+    }
 }

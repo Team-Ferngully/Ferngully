@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface IPauseListener
+{
+    void OnGamePause();
+    void OnGameUnpause();
+}
+
 public class GameManagerScript : MonoBehaviour {
 
     //Static instance of GameManager which allows it to be accessed by any other script.
@@ -12,6 +18,7 @@ public class GameManagerScript : MonoBehaviour {
     public bool enterSceneWithoutDirection; //if scene is reloaded and not entered from another scene
     private GameObject playerInstance;  //the player gameobject which is in use currently
 
+    private IPauseListener pauseListener;   //listens for pausing/unpausing and acts on it
 
     //Awake is always called before any Start functions
     void Awake()
@@ -89,8 +96,13 @@ public class GameManagerScript : MonoBehaviour {
     /// </summary>
     public void PauseGame()
     {
-        //could disable player to prevent player from listening actions like dash
         Time.timeScale = 0;
+
+        //stop listening for player input
+        if (pauseListener != null)
+        {
+            pauseListener.OnGamePause();
+        }
     }
 
     /// <summary>
@@ -98,7 +110,15 @@ public class GameManagerScript : MonoBehaviour {
     /// </summary>
     public void UnpauseGame()
     {
-        //enable player
         Time.timeScale = 1;
+
+        //start listening for player input
+        if (pauseListener != null)
+        {
+            pauseListener.OnGameUnpause();
+        }
     }
+
+    //sets a listener for game pausing events
+    public void SetPauseListener(IPauseListener listener)   {   pauseListener = listener;   }
 }
