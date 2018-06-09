@@ -83,4 +83,22 @@ public class GameManagerScript : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public bool GetEnteringFromDirection() { return enterSceneWithoutDirection; }
+
+    /// <summary>
+    /// Pauses the game by freezing time.
+    /// </summary>
+    public void PauseGame()
+    {
+        //could disable player to prevent player from listening actions like dash
+        Time.timeScale = 0;
+    }
+
+    /// <summary>
+    /// Unpauses the game by unfreezing time.
+    /// </summary>
+    public void UnpauseGame()
+    {
+        //enable player
+        Time.timeScale = 1;
+    }
 }
