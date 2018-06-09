@@ -7,7 +7,7 @@ public interface IPowerUpChangeListener
     void OnPowerUpsChanged();
 }
 
-public class PowerUpHolderScript : MonoBehaviour {
+public class PowerUpHolderScript : MonoBehaviour, ISceneSwitchListener {
 
     public static PowerUpHolderScript instance = null;  //static reference to this instance
 
@@ -37,8 +37,10 @@ public class PowerUpHolderScript : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
-		
+    void Start ()
+    {
+        //set as scene switch listener
+        SceneLoaderScript.instance.SetSceneSwitchListener(this);
 	}
 
     /// <summary>
@@ -73,6 +75,13 @@ public class PowerUpHolderScript : MonoBehaviour {
     public bool GetJumpPowerUpOn() { return isJumpPowerUpOn; }
     public bool GetWallJumpPowerUpOn() { return isWallJumpPowerUpOn; }
 
+    public void ResetPowerUps()
+    {
+        isDashPowerUpOn = false;
+        isJumpPowerUpOn = false;
+        isWallJumpPowerUpOn = false;
+    }
+
     /// <summary>
     /// Sets the power up change listener.
     /// </summary>
@@ -80,6 +89,14 @@ public class PowerUpHolderScript : MonoBehaviour {
     public void SetPowerUpChangeListener(IPowerUpChangeListener listener)
     {
         this.listener = listener;
+    }
+
+    /// <summary>
+    /// Clears current power up change listener.
+    /// </summary>
+    public void ClearPowerUpChangeListener()
+    {
+        this.listener = null;
     }
 
     /// <summary>
@@ -93,4 +110,8 @@ public class PowerUpHolderScript : MonoBehaviour {
         }
     }
 
+    public void OnSceneSwitch()
+    {
+        ClearPowerUpChangeListener();
+    }
 }

@@ -88,6 +88,9 @@ public class SceneLinkScript : MonoBehaviour, IAnimFinishedListener {
     /// </summary>
     public void EnterScene()
     {
+        //Save game
+        SaveManagerScript.instance.SaveGameData();
+
         //spawn player
         playerSpawner.SpawnPlayer(GameManagerScript.instance.GetCurrentPlayerPrefab());
 	

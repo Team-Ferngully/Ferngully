@@ -63,6 +63,14 @@ public class KeyHolderScript : MonoBehaviour {
     }
 
     /// <summary>
+    /// Removes all keys from key holder.
+    /// </summary>
+    public void ClearKeyHolderKeys()
+    {
+        KeyList.Clear();
+    }
+
+    /// <summary>
     /// Tells whether the given key id is in the keyholder list or not.
     /// </summary>
     /// <param name="keyId"></param>
@@ -100,6 +108,15 @@ public class KeyHolderScript : MonoBehaviour {
     public void ClearKeyTakenListeners()
     {
         keyTakenListeners.Clear();
+    }
+
+    /// <summary>
+    /// Gets a list of all key ids in the key holder.
+    /// </summary>
+    /// <returns></returns>
+    public List<int> GetKeyIdList()
+    {
+        return KeyList;
     }
 
     /// <summary>
