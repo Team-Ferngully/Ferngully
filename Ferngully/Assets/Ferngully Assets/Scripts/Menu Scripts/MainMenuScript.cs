@@ -14,7 +14,10 @@ public class MainMenuScript : MonoBehaviour {
 	
     public void HandleStartButton()
     {
-        //start game from the first playable scene which should be at index 1 (main menu at 0)
+        //set next scene to start without a directional transition anim
+        GameManagerScript.instance.SetEnteringFromDirection(false);
+
+        //start game from the first playable scene
         SceneLoaderScript.instance.LoadSceneByName(firstRoomName);
     }
 
