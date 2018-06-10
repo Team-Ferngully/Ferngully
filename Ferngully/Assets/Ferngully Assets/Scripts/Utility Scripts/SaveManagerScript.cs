@@ -235,5 +235,6 @@ public class SaveManagerScript : MonoBehaviour {
     {
         KeyHolderScript.instance.ClearKeyHolderKeys();
         PowerUpHolderScript.instance.ResetPowerUps();
+        GameManagerScript.instance.ResetGameManagerData();
     }
 }

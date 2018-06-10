@@ -121,4 +121,15 @@ public class GameManagerScript : MonoBehaviour {
 
     //sets a listener for game pausing events
     public void SetPauseListener(IPauseListener listener)   {   pauseListener = listener;   }
+
+    /// <summary>
+    /// Resets game manager's data (like scene entering and target scene link id) to default state.
+    /// </summary>
+    public void ResetGameManagerData()
+    {
+        //reset scene entering and target scene link id
+        SetEnteringFromDirection(false);
+        SetTargetSceneLinkId(0);
+        //player data doesn't need reseting?
+    }
 }
