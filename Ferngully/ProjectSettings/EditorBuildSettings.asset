@@ -26,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Ferngully Assets/Scenes/Test Scenes/DemoLevel02.unity
     guid: bf6dd465e6be9de49a28991d8ae688b7
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Test Scenes/DemoLevel03.unity
+    guid: a850d81456194494fbd31d0d7a0df352
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Test Scenes/DemoLevel04.unity
+    guid: 8d485b72b73f3c44b90e6ddd90d00dec
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Test Scenes/DemoLevel05.unity
+    guid: fe5a485fb69524d4c99c3047194f706d
   m_configObjects: {}

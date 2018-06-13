@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpType: 1
-  animationTime: 3
+  animationTime: 1
 --- !u!212 &212852154933931680
 SpriteRenderer:
   m_ObjectHideFlags: 1
