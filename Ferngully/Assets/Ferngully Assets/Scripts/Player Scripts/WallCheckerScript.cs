@@ -10,6 +10,8 @@ public class WallCheckerScript : MonoBehaviour {
     public float raycastOffsetY;    //how much above or below the center of transform are we performing the check
     private Vector3 rayOrigin;      //the point where the raycast originates
 
+    public bool isDebugOn = false;  //do we draw gizmo ray to visualize wall raycasting
+
     /// <summary>
     /// Let's us know whether the character is touching a wall in given direction
     /// </summary>
@@ -21,6 +23,7 @@ public class WallCheckerScript : MonoBehaviour {
 
         rayOrigin = new Vector3(transform.position.x, transform.position.y + raycastOffsetY, transform.position.z);
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, wallCheckDistance, wallLayer);
+
         if (hit.collider != null)
         {
             if (hit.collider.gameObject.tag == "Ground")
@@ -30,5 +33,24 @@ public class WallCheckerScript : MonoBehaviour {
         }
 
         return false;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        //draw a line which visualizes how far wall contant effects
+        if(isDebugOn == true)
+        {
+            Gizmos.color = Color.red;
+            Vector3 destination;
+            if(transform.localScale.x < 0)
+            {
+                destination = new Vector3(rayOrigin.x + (wallCheckDistance * -1), rayOrigin.y, rayOrigin.z);
+            }
+            else
+            {
+                destination = new Vector3(rayOrigin.x + (wallCheckDistance * 1), rayOrigin.y, rayOrigin.z);
+            }
+            Gizmos.DrawLine(rayOrigin, destination);
+        }
     }
 }
