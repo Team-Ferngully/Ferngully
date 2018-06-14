@@ -11,10 +11,12 @@ public class PowerUpScript : MonoBehaviour {
     private GameObject player;      //the player that touches this power up
 
     public float animationTime;     //how long will the player be locked in "power up applying"
+    private Animator anim;          //handles animations for this power up pod
 
     // Use this for initialization
     void Start ()
     {
+        anim = GetComponent<Animator>();
         HandlePowerUpInit();
     }
 
@@ -66,27 +68,41 @@ public class PowerUpScript : MonoBehaviour {
         {
             isPowerUpActive = true;
         }
+
+        //set pod animation to be on if pod is active
+        if(isPowerUpActive == true)
+        {
+            anim.SetBool("IsPodOn", true);
+        }
     }
 
     //Handles animating the power up applying.
     private IEnumerator HandlePowerUpApplying()
     {
         //close door
+        anim.SetTrigger("CloseDoors");
 
         //get player position (and which way sprite is facing)
         Vector3 playerPosition = player.transform.position;
-        bool isPlayerFacingLeft = player.GetComponent<SpriteRenderer>().flipX;
+        bool isPlayerFacingLeft = player.transform.localScale.x < 0;
 
         //delete player
         GameObject.Destroy(player);
 
         //animate "power up installing"?
         yield return new WaitForSeconds(animationTime);
-        //open door
+
+        //set pod to be off and open door
+        anim.SetBool("IsPodOn", false);
+        anim.SetTrigger("OpenDoors");
 
         //spawn player
-        player = Instantiate(GameManagerScript.instance.GetCurrentPlayerPrefab(), playerPosition, transform.rotation);
-        player.GetComponent<SpriteRenderer>().flipX = isPlayerFacingLeft;
+        player = Instantiate(GameManagerScript.instance.GetCurrentPlayerPrefab(), transform.position, transform.rotation);
+        //flip player if needed
+        if (isPlayerFacingLeft == true)
+        {
+            player.GetComponent<CharacterControllerScript>().FlipCharacter(-1);
+        }
 
         yield return null;
     }
