@@ -126,12 +126,13 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
     /// Changes the direction the character is facing based on direction input.
     /// </summary>
     /// <param name="direction"></param>
-    private void FlipCharacter(float direction)
+    public void FlipCharacter(float direction)
     {
         //flip character to face left(?) if direction is negative and not already facing that way
         //and the opposite for positive direction input
 
         //flipping done with spriterenderer. Other option is to use transform x scale (-1 and 1)
+        /*
         if (direction < 0 && spriteRenderer.flipX == false)
         {
             spriteRenderer.flipX = true;
@@ -139,6 +140,20 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         else if (direction > 0 && spriteRenderer.flipX == true)
         {
             spriteRenderer.flipX = false;
+        }
+        */
+
+        if(direction < 0 && transform.localScale.x > 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale = new Vector3(scale.x * -1, scale.y, scale.z);
+            transform.localScale = scale;
+        }
+        else if(direction > 0 && transform.localScale.x < 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale = new Vector3(scale.x * -1, scale.y, scale.z);
+            transform.localScale = scale;
         }
     }
 
@@ -320,7 +335,9 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
 
         //dash in the direction the character is facing
         //some other direction check might be better..
-        if (spriteRenderer.flipX)
+
+        //if (spriteRenderer.flipX)
+        if(transform.localScale.x < 0)
         {
             movement.x = -dashSpeed;
         }

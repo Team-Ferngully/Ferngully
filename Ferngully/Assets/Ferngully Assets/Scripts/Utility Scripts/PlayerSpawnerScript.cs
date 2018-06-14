@@ -13,6 +13,10 @@ public class PlayerSpawnerScript : MonoBehaviour {
     public void SpawnPlayer(GameObject playerPrefab)
     {
         GameObject player = Instantiate(playerPrefab, transform.position, transform.rotation);
-        player.GetComponent<SpriteRenderer>().flipX = playerIsFacingLeft;
+        //player.GetComponent<SpriteRenderer>().flipX = playerIsFacingLeft;
+        if(playerIsFacingLeft == true)
+        {
+            player.GetComponent<CharacterControllerScript>().FlipCharacter(-1);
+        }
     }
 }
