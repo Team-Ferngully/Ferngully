@@ -13,6 +13,8 @@ public class PowerUpScript : MonoBehaviour {
     public float animationTime;     //how long will the player be locked in "power up applying"
     private Animator anim;          //handles animations for this power up pod
 
+    public float applyRangeX = 0.1f;
+
     // Use this for initialization
     void Start ()
     {
@@ -20,10 +22,10 @@ public class PowerUpScript : MonoBehaviour {
         HandlePowerUpInit();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        //only handle trigger if power up is active and collision is with player
-        if(isPowerUpActive == true && collision.gameObject.tag == "Player")
+        //only handle trigger if power up is active AND collision is with player AND player is in the middle of the pod
+        if(isPowerUpActive == true && collision.gameObject.tag == "Player" && IsPlayerInRange(collision.transform))
         {
             //store the player gameobject for later disabling/enabling
             player = collision.gameObject;
@@ -45,6 +47,20 @@ public class PowerUpScript : MonoBehaviour {
 
             isPowerUpActive = false;
             StartCoroutine("HandlePowerUpApplying");
+        }
+    }
+
+    //Tells whether the player is within power up applying range.
+    private bool IsPlayerInRange(Transform playerTransform)
+    {
+        if(playerTransform.position.x > transform.position.x - applyRangeX 
+            && playerTransform.position.x < transform.position.x + applyRangeX)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -79,12 +95,17 @@ public class PowerUpScript : MonoBehaviour {
     //Handles animating the power up applying.
     private IEnumerator HandlePowerUpApplying()
     {
+        //disable player
+        player.GetComponent<CharacterControllerScript>().DisableCharacterMovement();
+
         //close door
         anim.SetTrigger("CloseDoors");
 
-        //get player position (and which way sprite is facing)
-        Vector3 playerPosition = player.transform.position;
+        //store which way player is facing
         bool isPlayerFacingLeft = player.transform.localScale.x < 0;
+
+        //wait a bit for the doors to close
+        yield return new WaitForSeconds(1);
 
         //delete player
         GameObject.Destroy(player);

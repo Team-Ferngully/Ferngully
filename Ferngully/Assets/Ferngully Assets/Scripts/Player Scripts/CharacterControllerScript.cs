@@ -427,4 +427,15 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         //figure out which animator to use
         animHandler.PickCorrectAnimator(isJumpBonusOn, isDashBonusOn, isWallJumpBonusOn);
     }
+
+    /// <summary>
+    /// Makes the character unable to move.
+    /// </summary>
+    public void DisableCharacterMovement()
+    {
+        areControlsDisabled = true;
+        rigidbody2d.isKinematic = true;
+        rigidbody2d.velocity = Vector3.zero;
+        this.enabled = false;
+    }
 }
