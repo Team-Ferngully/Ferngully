@@ -45,6 +45,7 @@ public class KeyScript : MonoBehaviour {
             TakeKey();
 
             //handle some animations? screenshake, shine/bling anim/sound.
+            collision.gameObject.GetComponent<PlayerSoundEffectsScript>().PlayItemGet();
 
             //remove/disable this gameobject
             gameObject.SetActive(false);

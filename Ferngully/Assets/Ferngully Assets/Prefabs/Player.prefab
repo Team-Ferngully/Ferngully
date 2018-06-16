@@ -31,6 +31,7 @@ GameObject:
   - component: {fileID: 61483835233914566}
   - component: {fileID: 58426066993472294}
   - component: {fileID: 61239672763756102}
+  - component: {fileID: 114521956632895782}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -201,6 +202,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f267b4d55594f6449960fa3bcef1d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114521956632895782
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1448840056799740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a58fe6a446ccf04dadba2ac0c837857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useRunningSound: 1
+  running: {fileID: 8300000, guid: 4c5818eeaf6dd5d41aca5240c455658a, type: 3}
+  useJumpingSound: 1
+  jumping: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+  useWallSlidingSound: 1
+  wallSliding: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  useDashingSound: 1
+  dashing: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
+  usePowerUpSound: 1
+  powerUpApplying: {fileID: 8300000, guid: 35fbad8cdde724f11ba6481f1e64af71, type: 3}
+  useItemGetSound: 1
+  itemGet: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
+  useDeathSound: 1
+  death: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
 --- !u!114 &114661968156086602
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,6 +21,7 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
     private WallCheckerScript wallChecker;      //handles checking whether this character is touching a wall
 
     private PlayerAnimHandler animHandler;
+    private PlayerSoundEffectsScript sounds;
 
     [Header("Basic Movement Settings")]
     public float movementSpeed = 10f;       //how fast the character can move horizontally
@@ -69,6 +70,7 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         groundChecker = GetComponent<GroundCheckerScript>();
         wallChecker = GetComponent<WallCheckerScript>();
         animHandler = GetComponent<PlayerAnimHandler>();
+        sounds = GetComponent<PlayerSoundEffectsScript>();
 
         PowerUpHolderScript.instance.SetPowerUpChangeListener(this);
         OnPowerUpsChanged();
@@ -117,6 +119,9 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
 
         //tell animator is player running
         animHandler.SetIsRunning(movement.x != 0);
+
+        if(movement.x != 0 && isGrounded == true)
+            sounds.PlayRunning();
         
         //make sure character is facing the correct direction based on input
         FlipCharacter(horizontalInput);
@@ -173,6 +178,7 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         //do a wall jump or normal jump  
         if (isTouchingWall == true  && currentWallJumps > 0 && isGrounded == false)    //&& isGrounded == false
         {
+            sounds.PlayJumping();
             StartCoroutine("HandleWallJump");
         }
         else if(isGrounded == true)
@@ -184,7 +190,9 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
             else
             {
                 movement.y = jumpSpeed;
-            }          
+            }
+
+            sounds.PlayJumping();
             //reset long jumping
             isLongJumpSpent = false;
             jumpTimer = 0;
@@ -242,6 +250,7 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         //dash if more than 0 dashes left, character isn't touching a wall and cooldown isn't active
         if(currentDashCount > 0 && isTouchingWall == false && isDashAllowed == true)
         {
+            sounds.PlayDashing();
             StartCoroutine("HandleDash");
         }
     }
@@ -261,6 +270,7 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
             
             if (rigidbody2d.velocity.y <= 0)
             {
+                sounds.PlayWallSliding();
                 //wall jump power up makes sliding very slow
                 if(isWallJumpBonusOn == true && slowSlide == true)
                 {
@@ -395,6 +405,14 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         {
             isGrounded = true;
             
+            /*
+            //if character wasn't already on ground, play grounded sound
+            if(groundChecker.WasGroundedLastCheck() == false)
+            {
+                sounds.PlayLanding();
+            }
+            */
+
             currentDashCount = maxDashCount;
             //add dash power up dashes to current count if power up is on
             if (isDashBonusOn == true)

@@ -17,6 +17,8 @@ public class HazardHandlerScript : MonoBehaviour {
             //kill the player (one hit = death?)
             //freeze player
             //animate death (-> player anim handler)
+            //play death sound
+            GetComponent<PlayerSoundEffectsScript>().PlayDeath();
             //setup and animate scene reload (quick fade-in)
             GameManagerScript.instance.SetEnteringFromDirection(false);
             SceneLoaderScript.instance.ReloadScene();

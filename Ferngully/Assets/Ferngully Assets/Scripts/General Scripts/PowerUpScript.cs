@@ -110,6 +110,9 @@ public class PowerUpScript : MonoBehaviour {
         //delete player
         GameObject.Destroy(player);
 
+        //play power up sound
+        player.GetComponent<PlayerSoundEffectsScript>().PlayPowerUp();
+
         //animate "power up installing"?
         yield return new WaitForSeconds(animationTime);
 
@@ -119,11 +122,12 @@ public class PowerUpScript : MonoBehaviour {
 
         //spawn player
         player = Instantiate(GameManagerScript.instance.GetCurrentPlayerPrefab(), transform.position, transform.rotation);
+
         //flip player if needed
         if (isPlayerFacingLeft == true)
         {
             player.GetComponent<CharacterControllerScript>().FlipCharacter(-1);
-        }
+        }       
 
         yield return null;
     }

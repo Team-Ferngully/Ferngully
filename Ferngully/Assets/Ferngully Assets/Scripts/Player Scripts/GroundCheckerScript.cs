@@ -8,6 +8,7 @@ using UnityEngine;
 public class GroundCheckerScript : MonoBehaviour {
 
     private bool isGrounded = false;
+    private bool wasGroundedLastCheck = false;
 
     /// <summary>
     /// Tells whether the gameobject is currently grounded or not.
@@ -18,6 +19,15 @@ public class GroundCheckerScript : MonoBehaviour {
         return isGrounded;
     }
 
+    /// <summary>
+    /// Tells whether the gameobject was grounded the last time ground check was made.
+    /// </summary>
+    /// <returns></returns>
+    public bool WasGroundedLastCheck()
+    {
+        return wasGroundedLastCheck;
+    }
+
     //if the character's trigger collider is touching ground,
     //the character is considered to be grounded
     private void OnTriggerStay2D(Collider2D collision)
@@ -25,6 +35,16 @@ public class GroundCheckerScript : MonoBehaviour {
         //only colliders with Ground tag will set the character to be grounded.
         if (collision.gameObject.tag == "Ground")
         {
+            //if is grounded = false -> was grounded last frame = false
+            if(isGrounded == false)
+            {
+                wasGroundedLastCheck = false;
+            }
+            else
+            {
+                wasGroundedLastCheck = true;
+            }
+
             isGrounded = true;
         }
     }
