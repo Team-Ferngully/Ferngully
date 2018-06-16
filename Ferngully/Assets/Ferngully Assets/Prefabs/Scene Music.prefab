@@ -52,3 +52,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneMusicTrack: {fileID: 8300000, guid: f1f7318984b0c7f45b47b2ecaf766063, type: 3}
+  useSceneMusic: 1
