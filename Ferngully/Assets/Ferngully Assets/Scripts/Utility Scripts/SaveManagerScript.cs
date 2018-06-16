@@ -13,6 +13,7 @@ public class SaveManagerScript : MonoBehaviour {
 
     public bool enableSaving;   //do we allow saving
     public bool clearSaveDataOnStart;   //do we want save data to be cleared when this script starts
+    public bool clearAudioSaveOnStart;  //do we want to clear audio saves when this script starts
 
     //player pref keys for power ups
     private string dashKey = "dashPowerUp", jumpKey = "jumpPowerUp", wallJumpKey = "wallJumpPowerUp";
@@ -25,6 +26,9 @@ public class SaveManagerScript : MonoBehaviour {
 
     //player pref key for target scene link id
     private string sceneLinkKey = "targetSceneLinkId";
+
+    private string musicVolumeKey = "musicVolumeKey";
+    private string soundVolumeKey = "soundVolumeKey";
 
     //Awake is always called before any Start functions
     void Awake()
@@ -51,7 +55,14 @@ public class SaveManagerScript : MonoBehaviour {
 	    if(clearSaveDataOnStart == true)
         {
             ClearSaveData();
-        }	
+        }
+
+        if(clearAudioSaveOnStart == true)
+        {
+            //audio settings
+            PlayerPrefs.DeleteKey(musicVolumeKey);
+            PlayerPrefs.DeleteKey(soundVolumeKey);
+        }
 	}
 
     /// <summary>
@@ -236,5 +247,43 @@ public class SaveManagerScript : MonoBehaviour {
         KeyHolderScript.instance.ClearKeyHolderKeys();
         PowerUpHolderScript.instance.ResetPowerUps();
         GameManagerScript.instance.ResetGameManagerData();
+    }
+
+    //saves the music volume if saving is allowed
+    public void SaveMusicVolume(float musicVol)
+    {
+        if(enableSaving == true)
+        {
+            PlayerPrefs.SetFloat(musicVolumeKey, musicVol);
+            PlayerPrefs.Save();
+        }     
+    }
+
+    //loads and returns music volume
+    public float LoadMusicVolume()
+    {
+        if (PlayerPrefs.HasKey(musicVolumeKey))
+            return PlayerPrefs.GetFloat(musicVolumeKey);
+        else
+            return 0.5f;
+    }
+
+    //saves the sound volume if saving is allowed
+    public void SaveSoundVolume(float soundVol)
+    {
+        if(enableSaving == true)
+        {
+            PlayerPrefs.SetFloat(soundVolumeKey, soundVol);
+            PlayerPrefs.Save();
+        }     
+    }
+
+    //loads and returns sound volume
+    public float LoadSoundVolume()
+    {
+        if (PlayerPrefs.HasKey(soundVolumeKey))
+            return PlayerPrefs.GetFloat(soundVolumeKey);
+        else
+            return 0.5f;
     }
 }

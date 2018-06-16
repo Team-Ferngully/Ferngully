@@ -70,6 +70,13 @@ public class AudioManagerScript : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        //load audio settings
+        MusicVolume = SaveManagerScript.instance.LoadMusicVolume();
+        SoundVolume = SaveManagerScript.instance.LoadSoundVolume();
+    }
+
     /// <summary>
     /// Used to play single sound clips.
     /// </summary>

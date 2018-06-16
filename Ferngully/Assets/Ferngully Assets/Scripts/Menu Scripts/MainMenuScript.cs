@@ -8,12 +8,16 @@ public class MainMenuScript : MonoBehaviour {
     public GameObject optionsPanel; //options panel in main menu. Set in editor
     public string firstRoomName;    //first playable level player enters when hitting start game
     public Button continueButton;   //the button which loads player to last played scene and with correct data
+    public Selectable firstElement; //first element to be selected when this panel opens
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
+        //deselect the active button to prevent issues with highlighting
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+
         //if save data doesn't exist, disable continue button
-		if(SaveManagerScript.instance.SaveDataExists() == false)
+        if (SaveManagerScript.instance.SaveDataExists() == false)
         {
             //continueButton.enabled = false;
             continueButton.interactable = false;
@@ -61,5 +65,6 @@ public class MainMenuScript : MonoBehaviour {
     private void OnEnable()
     {
         //set first main panel element to be active for navigation
+        firstElement.Select();
     }
 }
