@@ -11,6 +11,10 @@ public class PauseMenuScript : MonoBehaviour {
     private bool isGamePaused = false;  //is the game in pause state at given movement
     public Button buttonToHighlight;    //the first button to highlight when menu is opened
 
+    public bool useUnpauseDelay = true; //after closing pause menu add a small delay to unpausing.
+                                        //prevents bugs like player jumping because of closing the menu.
+    public float unpauseDelay = 0.05f;   //use a very small delay to avoid player confusion 
+
     private void Update()
     {
         //listen for pause button press
@@ -43,8 +47,7 @@ public class PauseMenuScript : MonoBehaviour {
         pausePanel.SetActive(true);
 
         //set continue button active for navigation
-        buttonToHighlight.Select();
-        
+        buttonToHighlight.Select();      
     }
 
     /// <summary>
@@ -52,16 +55,24 @@ public class PauseMenuScript : MonoBehaviour {
     /// </summary>
     public void HidePauseMenu()
     {
-        //unpause game
-        isGamePaused = false;
-        GameManagerScript.instance.UnpauseGame();
-
         //deselect the active button to prevent issues with reopening the pause menu
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
 
         //close pause menu (and pause tint image)
         pauseTintImage.SetActive(false);
         pausePanel.SetActive(false);
+
+        //either unpause with a small delay or on the same frame (causes problems)
+        if(useUnpauseDelay == true)
+        {
+            StartCoroutine(UnpauseWithDelay(unpauseDelay));
+        }
+        else
+        {
+            //unpause game
+            isGamePaused = false;
+            GameManagerScript.instance.UnpauseGame();
+        }
     }
 
     public void HandleContinueButton()
@@ -72,8 +83,36 @@ public class PauseMenuScript : MonoBehaviour {
 
     public void HandleMainMenuButton()
     {
-        //unpause/unfreeze game
+        //either unpause with a small delay or on the same frame (causes problems)
+        if (useUnpauseDelay == true)
+        {
+            StartCoroutine(ReturnToMainMenuWithDelay(unpauseDelay));
+        }
+        else
+        {
+            GameManagerScript.instance.UnpauseGame();
+            //load main menu
+            SceneLoaderScript.instance.LoadMainMenu();
+        }   
+    }
+
+    private IEnumerator UnpauseWithDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+
+        //unpause game
+        isGamePaused = false;
         GameManagerScript.instance.UnpauseGame();
+    }
+
+    private IEnumerator ReturnToMainMenuWithDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+
+        //unpause game
+        isGamePaused = false;
+        GameManagerScript.instance.UnpauseGame();
+
         //load main menu
         SceneLoaderScript.instance.LoadMainMenu();
     }
