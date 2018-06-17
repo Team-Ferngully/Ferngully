@@ -10,7 +10,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
 
-    private SpriteRenderer spriteRenderer;  //this character's sprite renderer
+    //private SpriteRenderer spriteRenderer;  //this character's sprite renderer
     private Rigidbody2D rigidbody2d;        //this character's rigidbody
     private Vector3 movement;               //movement vector which we pass to the rigidbody as velocity
     private bool isGrounded;                //is the character currently on ground
@@ -65,7 +65,7 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
 	void Start ()
     {
         //get references for used components
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        //spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2d = GetComponent<Rigidbody2D>();
         groundChecker = GetComponent<GroundCheckerScript>();
         wallChecker = GetComponent<WallCheckerScript>();

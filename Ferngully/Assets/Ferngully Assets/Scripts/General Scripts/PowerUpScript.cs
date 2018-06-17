@@ -107,8 +107,20 @@ public class PowerUpScript : MonoBehaviour {
         //wait a bit for the doors to close
         yield return new WaitForSeconds(1);
 
-        //delete player
+        //delete player (might not be needed, simply translate/teleport player to desired pos?)
         GameObject.Destroy(player);
+
+        //spawn new player with powerup
+        player = Instantiate(GameManagerScript.instance.GetCurrentPlayerPrefab(), transform.position, transform.rotation);
+
+        //disable player controls until powerup anim finishes
+        player.GetComponent<PlayerInputScript>().SetIsListeningForInput(false);
+
+        //flip player if needed
+        if (isPlayerFacingLeft == true)
+        {
+            player.GetComponent<CharacterControllerScript>().FlipCharacter(-1);
+        }
 
         //play power up sound
         player.GetComponent<PlayerSoundEffectsScript>().PlayPowerUp();
@@ -120,14 +132,12 @@ public class PowerUpScript : MonoBehaviour {
         anim.SetBool("IsPodOn", false);
         anim.SetTrigger("OpenDoors");
 
-        //spawn player
-        player = Instantiate(GameManagerScript.instance.GetCurrentPlayerPrefab(), transform.position, transform.rotation);
+        yield return new WaitForEndOfFrame();
+        //add small delay before enabling player controls
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length*3);
 
-        //flip player if needed
-        if (isPlayerFacingLeft == true)
-        {
-            player.GetComponent<CharacterControllerScript>().FlipCharacter(-1);
-        }       
+        //enable player controls
+        player.GetComponent<PlayerInputScript>().SetIsListeningForInput(true);
 
         yield return null;
     }

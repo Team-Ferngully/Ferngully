@@ -103,4 +103,13 @@ public class PlayerInputScript : MonoBehaviour, IPauseListener{
         //resume listening for input
         isListeningForInput = true;
     }
+
+    /// <summary>
+    /// Setting listening on or off acts as a way to disable player movement.
+    /// </summary>
+    /// <param name="isListening"></param>
+    public void SetIsListeningForInput(bool isListening)
+    {
+        isListeningForInput = isListening;
+    }
 }
