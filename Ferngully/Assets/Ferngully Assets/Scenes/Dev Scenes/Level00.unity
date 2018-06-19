@@ -192,7 +192,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4639499109066554, guid: 7e76c10a90f251241899bae2a6cc0f2a, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e76c10a90f251241899bae2a6cc0f2a, type: 2}
@@ -1920,5 +1920,5 @@ Transform:
   m_Children:
   - {fileID: 961704549}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
