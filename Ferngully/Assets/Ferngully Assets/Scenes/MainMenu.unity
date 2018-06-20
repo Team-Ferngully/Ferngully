@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsPanel: {fileID: 820242754}
-  firstRoomName: SampleScene
+  firstRoomName: Level01
   continueButton: {fileID: 1490290989}
   firstElement: {fileID: 1973102433}
 --- !u!1 &1306509602
