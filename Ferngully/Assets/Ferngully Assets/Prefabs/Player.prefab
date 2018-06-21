@@ -252,12 +252,12 @@ MonoBehaviour:
   dashCooldown: 0.3
   isDashBonusOn: 0
   bonusDashes: 1
-  isJumpBonusOn: 1
+  isJumpBonusOn: 0
   jumpSpeedBonus: 3
   isWallJumpBonusOn: 0
   jumpSpeedXBonus: 1
   jumpSpeedYBonus: 4
-  slowSlide: 1
+  slowSlide: 0
 --- !u!114 &114882301992539750
 MonoBehaviour:
   m_ObjectHideFlags: 1
