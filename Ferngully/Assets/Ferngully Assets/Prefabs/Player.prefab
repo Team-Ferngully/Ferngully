@@ -244,7 +244,7 @@ MonoBehaviour:
   wallSlideSpeed: 1
   maxWallJumps: 10000
   wallJumpSpeedX: 8
-  wallJumpSpeedY: 4
+  wallJumpSpeedY: 5
   wallJumpTime: 0.2
   maxDashCount: 1
   dashSpeed: 12
@@ -252,8 +252,8 @@ MonoBehaviour:
   dashCooldown: 0.3
   isDashBonusOn: 0
   bonusDashes: 1
-  isJumpBonusOn: 0
-  jumpSpeedBonus: 2
+  isJumpBonusOn: 1
+  jumpSpeedBonus: 3
   isWallJumpBonusOn: 0
   jumpSpeedXBonus: 1
   jumpSpeedYBonus: 4
