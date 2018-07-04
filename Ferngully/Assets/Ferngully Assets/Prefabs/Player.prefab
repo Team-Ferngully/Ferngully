@@ -197,11 +197,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a58fe6a446ccf04dadba2ac0c837857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useRunningSound: 1
+  useRunningSound: 0
   running: {fileID: 8300000, guid: 4c5818eeaf6dd5d41aca5240c455658a, type: 3}
   useJumpingSound: 1
   jumping: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
-  useWallSlidingSound: 1
+  useWallSlidingSound: 0
   wallSliding: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
   useDashingSound: 1
   dashing: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
