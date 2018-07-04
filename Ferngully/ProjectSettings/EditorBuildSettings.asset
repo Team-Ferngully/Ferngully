@@ -9,24 +9,24 @@ EditorBuildSettings:
     path: Assets/Ferngully Assets/Scenes/MainMenu.unity
     guid: 0e4790ec928a41b45b782eff681ab7cc
   - enabled: 1
-    path: Assets/Ferngully Assets/Scenes/Dev Scenes/Level00.unity
-    guid: bfc23baeb523d8844b680e68a68d1e0d
-  - enabled: 1
-    path: Assets/Ferngully Assets/Scenes/Dev Scenes/Level01.unity
-    guid: fdffa3220a2235b4885adb935d6732d8
-  - enabled: 1
-    path: Assets/Ferngully Assets/Scenes/Dev Scenes/Level02.unity
-    guid: 1e64575bfc173124db339c5735486c25
-  - enabled: 1
-    path: Assets/Ferngully Assets/Scenes/Dev Scenes/Level03.unity
-    guid: c6b72fb9124e4c746981f3e89a7c744a
-  - enabled: 1
-    path: Assets/Ferngully Assets/Scenes/Dev Scenes/Level04.unity
-    guid: 73399970e1f59f7488c3d29bde7a0b00
-  - enabled: 1
-    path: Assets/Ferngully Assets/Scenes/Dev Scenes/Level05.unity
-    guid: 83304696aafe71645b7527a287940ec9
-  - enabled: 1
     path: Assets/Ferngully Assets/Scenes/EndScene.unity
     guid: 41e34b0bf6de93441a6531fcb1837fa2
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Nature Scenes/Level00.unity
+    guid: bfc23baeb523d8844b680e68a68d1e0d
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Nature Scenes/Level01.unity
+    guid: fdffa3220a2235b4885adb935d6732d8
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Nature Scenes/Level02.unity
+    guid: 1e64575bfc173124db339c5735486c25
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Nature Scenes/Level03.unity
+    guid: c6b72fb9124e4c746981f3e89a7c744a
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Nature Scenes/Level04.unity
+    guid: 73399970e1f59f7488c3d29bde7a0b00
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Blend Scenes/Blend00.unity
+    guid: 8e4bf72010b07374abac118e35f974bb
   m_configObjects: {}
