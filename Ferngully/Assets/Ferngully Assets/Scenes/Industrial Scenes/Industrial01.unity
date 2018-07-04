@@ -700,7 +700,7 @@ Prefab:
     - target: {fileID: 114623552824205356, guid: 769acb0f9124eb94bb4accfe9fa22b2b,
         type: 2}
       propertyPath: targetSceneName
-      value: Blend04
+      value: Industrial00
       objectReference: {fileID: 0}
     - target: {fileID: 114623552824205356, guid: 769acb0f9124eb94bb4accfe9fa22b2b,
         type: 2}
@@ -972,7 +972,7 @@ Prefab:
     - target: {fileID: 114623552824205356, guid: 769acb0f9124eb94bb4accfe9fa22b2b,
         type: 2}
       propertyPath: targetSceneName
-      value: Industrial01
+      value: Industrial02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 769acb0f9124eb94bb4accfe9fa22b2b, type: 2}
