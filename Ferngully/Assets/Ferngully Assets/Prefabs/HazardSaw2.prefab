@@ -9,44 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1975452979235120}
+  m_RootGameObject: {fileID: 1910279368855408}
   m_IsPrefabParent: 1
---- !u!1 &1975452979235120
+--- !u!1 &1910279368855408
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4500966669780736}
-  - component: {fileID: 212404831013035852}
-  - component: {fileID: 60993043008154014}
+  - component: {fileID: 4185029223828628}
+  - component: {fileID: 212834738841331620}
+  - component: {fileID: 58430977230184972}
+  - component: {fileID: 114332923777119082}
   m_Layer: 0
-  m_Name: HazardLava
+  m_Name: HazardSaw2
   m_TagString: Hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4500966669780736
+--- !u!4 &4185029223828628
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1975452979235120}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.02, y: -10.69, z: 0}
-  m_LocalScale: {x: 20, y: -1, z: 1}
+  m_GameObject: {fileID: 1910279368855408}
+  m_LocalRotation: {x: 0, y: 0, z: -0.07219377, w: 0.9973907}
+  m_LocalPosition: {x: -1.0650504, y: -1.7496743, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.052239124}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60993043008154014
-PolygonCollider2D:
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -8.28}
+--- !u!58 &58430977230184972
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1975452979235120}
+  m_GameObject: {fileID: 1910279368855408}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -54,29 +55,26 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.02, y: 0.16}
-      - {x: -0.16, y: -0.099999994}
-      - {x: -0.16, y: -0.16}
-      - {x: 0.16, y: -0.16}
-      - {x: 0.16, y: -0.12}
-      - {x: 0.02, y: 0.16}
---- !u!212 &212404831013035852
+  serializedVersion: 2
+  m_Radius: 10
+--- !u!114 &114332923777119082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1910279368855408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7880837e9054383458044b944e43278e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 150
+--- !u!212 &212834738841331620
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1975452979235120}
+  m_GameObject: {fileID: 1910279368855408}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -106,12 +104,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fa6e9618fe4167543853dce4dc967a4b, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d33ea17d6384a6c499ce6787f2d0d986, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 21.86, y: 21.740002}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
