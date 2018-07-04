@@ -14,6 +14,7 @@ public class PowerUpScript : MonoBehaviour {
     private Animator anim;          //handles animations for this power up pod
 
     public float applyRangeX = 0.1f;
+    public float spawnOffsetY = -0.1f;
 
     // Use this for initialization
     void Start ()
@@ -111,7 +112,8 @@ public class PowerUpScript : MonoBehaviour {
         GameObject.Destroy(player);
 
         //spawn new player with powerup
-        player = Instantiate(GameManagerScript.instance.GetCurrentPlayerPrefab(), transform.position, transform.rotation);
+        Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + spawnOffsetY, transform.position.z);
+        player = Instantiate(GameManagerScript.instance.GetCurrentPlayerPrefab(), spawnPos, transform.rotation);
 
         //disable player controls until powerup anim finishes
         player.GetComponent<PlayerInputScript>().SetIsListeningForInput(false);

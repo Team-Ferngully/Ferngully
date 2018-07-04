@@ -454,6 +454,10 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         areControlsDisabled = true;
         rigidbody2d.isKinematic = true;
         rigidbody2d.velocity = Vector3.zero;
+
+        //tell animator player is not running
+        animHandler.SetIsRunning(false);
+
         this.enabled = false;
     }
 }
