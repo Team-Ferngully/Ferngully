@@ -29,4 +29,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Ferngully Assets/Scenes/Blend Scenes/Blend00.unity
     guid: 8e4bf72010b07374abac118e35f974bb
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Blend Scenes/Blend01.unity
+    guid: df19f88b14b0086439550a01700cb407
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Blend Scenes/Blend02.unity
+    guid: fb5e3e091537c5f478d9cd5b3c800a89
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Blend Scenes/Blend03.unity
+    guid: 2ce1ad3b2e816f946b4a554a225323f6
+  - enabled: 1
+    path: Assets/Ferngully Assets/Scenes/Blend Scenes/Blend04.unity
+    guid: d895033144507c043a4d2f78cca866ac
   m_configObjects: {}

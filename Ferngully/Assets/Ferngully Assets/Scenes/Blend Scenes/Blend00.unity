@@ -1393,6 +1393,16 @@ Prefab:
       propertyPath: playerIsFacingLeft
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114623552824205356, guid: 769acb0f9124eb94bb4accfe9fa22b2b,
+        type: 2}
+      propertyPath: targetSceneName
+      value: Level01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114623552824205356, guid: 769acb0f9124eb94bb4accfe9fa22b2b,
+        type: 2}
+      propertyPath: targetLinkId
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 769acb0f9124eb94bb4accfe9fa22b2b, type: 2}
   m_IsPrefabParent: 0
@@ -1658,7 +1668,7 @@ Prefab:
     - target: {fileID: 114623552824205356, guid: 769acb0f9124eb94bb4accfe9fa22b2b,
         type: 2}
       propertyPath: targetSceneName
-      value: Level
+      value: Blend01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 769acb0f9124eb94bb4accfe9fa22b2b, type: 2}
