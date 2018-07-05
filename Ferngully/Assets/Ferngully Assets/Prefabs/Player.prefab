@@ -172,9 +172,9 @@ MonoBehaviour:
   animatorD: {fileID: 22100000, guid: 4ad14f7c82885894ea658efe30404051, type: 2}
   animatorW: {fileID: 22100000, guid: 8886273b38e29cb4f89c5a094c562d3b, type: 2}
   animatorJD: {fileID: 22100000, guid: 73940c553b8914b4da879d3dc18bfc8a, type: 2}
-  animatorJW: {fileID: 0}
-  animatorDW: {fileID: 0}
-  animatorJDW: {fileID: 0}
+  animatorJW: {fileID: 22100000, guid: f8f06705b4681244b88e311208072ab6, type: 2}
+  animatorDW: {fileID: 22100000, guid: fce74d87c065d514c862362438040e4e, type: 2}
+  animatorJDW: {fileID: 22100000, guid: 20f30e5aa973ff44faef08b2318c5816, type: 2}
 --- !u!114 &114455000617868136
 MonoBehaviour:
   m_ObjectHideFlags: 1

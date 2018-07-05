@@ -54,6 +54,7 @@ public class PlayerAnimHandler : MonoBehaviour {
         if(isJumpPowerupOn == true && isDashPowerupOn == true && isWallJumpPowerupOn == true)
         {
             Debug.Log("using player animator jump+dash+walljump");
+            anim.runtimeAnimatorController = animatorJDW;
         }
         else if(isJumpPowerupOn == true && isDashPowerupOn == true)
         {
@@ -63,10 +64,12 @@ public class PlayerAnimHandler : MonoBehaviour {
         else if(isJumpPowerupOn == true && isWallJumpPowerupOn == true)
         {
             Debug.Log("using player animator jump+walljump");
+            anim.runtimeAnimatorController = animatorJW;
         }
         else if(isDashPowerupOn == true && isWallJumpPowerupOn == true)
         {
             Debug.Log("using player animator dash+walljump");
+            anim.runtimeAnimatorController = animatorDW;
         }
         else if(isJumpPowerupOn == true)
         {
