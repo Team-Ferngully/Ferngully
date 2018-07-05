@@ -1718,12 +1718,12 @@ Prefab:
     - target: {fileID: 114623552824205356, guid: 769acb0f9124eb94bb4accfe9fa22b2b,
         type: 2}
       propertyPath: targetSceneName
-      value: Blend04
+      value: Blend02
       objectReference: {fileID: 0}
     - target: {fileID: 114623552824205356, guid: 769acb0f9124eb94bb4accfe9fa22b2b,
         type: 2}
       propertyPath: targetLinkId
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4216008385279858, guid: 769acb0f9124eb94bb4accfe9fa22b2b, type: 2}
       propertyPath: m_LocalScale.x
