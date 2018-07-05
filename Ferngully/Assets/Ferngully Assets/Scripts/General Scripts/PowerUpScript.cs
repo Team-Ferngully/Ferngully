@@ -30,24 +30,28 @@ public class PowerUpScript : MonoBehaviour {
         {
             //store the player gameobject for later disabling/enabling
             player = collision.gameObject;
-            //handle power up saving and applying...
-            if (powerUpType == PowerUpTypes.Dash)
-            {
-                PowerUpHolderScript.instance.SetDashPowerUpOn();
-            }
-
-            if (powerUpType == PowerUpTypes.Jump)
-            {
-                PowerUpHolderScript.instance.SetJumpPowerUpOn();
-            }
-
-            if (powerUpType == PowerUpTypes.WallJump)
-            {
-                PowerUpHolderScript.instance.SetWallJumpPowerUpOn();
-            }
-
+            
             isPowerUpActive = false;
             StartCoroutine("HandlePowerUpApplying");
+        }
+    }
+
+    private void ApplyCorrectPowerup()
+    {
+        //handle power up saving and applying...
+        if (powerUpType == PowerUpTypes.Dash)
+        {
+            PowerUpHolderScript.instance.SetDashPowerUpOn();
+        }
+
+        if (powerUpType == PowerUpTypes.Jump)
+        {
+            PowerUpHolderScript.instance.SetJumpPowerUpOn();
+        }
+
+        if (powerUpType == PowerUpTypes.WallJump)
+        {
+            PowerUpHolderScript.instance.SetWallJumpPowerUpOn();
         }
     }
 
@@ -127,7 +131,9 @@ public class PowerUpScript : MonoBehaviour {
         //play power up sound
         player.GetComponent<PlayerSoundEffectsScript>().PlayPowerUp();
 
-        //animate "power up installing"?
+        //apply correct anim controller to player
+        ApplyCorrectPowerup();
+
         yield return new WaitForSeconds(animationTime);
 
         //set pod to be off and open door
