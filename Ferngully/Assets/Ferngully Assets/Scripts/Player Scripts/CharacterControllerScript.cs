@@ -382,8 +382,10 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         rigidbody2d.gravityScale = originalGravityScale;
         areControlsDisabled = false;
 
+        animHandler.SetIsDashing(false);
+
         //IF grounded add cooldown to dashing / dont allow dashing yet
-        if(isGrounded == true)
+        if (isGrounded == true)
         {
             isDashAllowed = false;
             yield return new WaitForSeconds(dashCooldown);
@@ -392,7 +394,6 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
             isDashAllowed = true;
         }
 
-        animHandler.SetIsDashing(false);
         yield return null;
     }
 
