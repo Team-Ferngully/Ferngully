@@ -74,6 +74,7 @@ public class PlayerAnimHandler : MonoBehaviour {
         else if(isDashPowerupOn == true)
         {
             Debug.Log("using player animator dash");
+            anim.runtimeAnimatorController = animatorD;
         }
         else if(isWallJumpPowerupOn == true)
         {
