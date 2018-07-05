@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212400807274703424}
   - component: {fileID: 114111244478773766}
   - component: {fileID: 61223742652764096}
+  - component: {fileID: 114235876108989770}
   m_Layer: 0
   m_Name: BlueKey
   m_TagString: Untagged
@@ -51,7 +52,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -79,6 +80,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyId: 3
+--- !u!114 &114235876108989770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1322423550878436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a45e39461fccf44da8937ed519557ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowHovering: 1
+  hoverDistance: 0.05
+  hoverSpeed: 1
 --- !u!212 &212400807274703424
 SpriteRenderer:
   m_ObjectHideFlags: 1
