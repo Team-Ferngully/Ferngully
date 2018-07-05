@@ -58,6 +58,7 @@ public class PlayerAnimHandler : MonoBehaviour {
         else if(isJumpPowerupOn == true && isDashPowerupOn == true)
         {
             Debug.Log("using player animator jump+dash");
+            anim.runtimeAnimatorController = animatorJD;
         }
         else if(isJumpPowerupOn == true && isWallJumpPowerupOn == true)
         {

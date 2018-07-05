@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Player DJ Animator
+  m_Controller: {fileID: 9100000, guid: e98399cc889296d40b0f632aa9e5b40c, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: abea7cc558065d54d8188a8751274d40, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: af414272cd75ee44993ef118b034bfb7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f6e4766acd57a7f4eb78c31b41e35347, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 56fa3dd9caa54914d8b302d2dbfcf35c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f11f62f5ca53cf54c979b5be8479ed64, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e1adc8035e55168499ca9edcf665b416, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1b43e47b6d090934db505134025e8291, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 55161493ec49fbc4d8cfb233e728cd63, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 89d4c780439153d4c96786f2161a5b75, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b89ee6db544923a4e86ace74909a798e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 688c39d1894c3464c8d3456925314631, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 09b96a44d31cb93409c73128972b1115, type: 2}
