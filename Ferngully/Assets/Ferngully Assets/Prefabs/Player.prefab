@@ -170,7 +170,7 @@ MonoBehaviour:
   defaultAnimator: {fileID: 9100000, guid: e98399cc889296d40b0f632aa9e5b40c, type: 2}
   animatorJ: {fileID: 22100000, guid: 8154692347617dd41b291fd754859c78, type: 2}
   animatorD: {fileID: 22100000, guid: 4ad14f7c82885894ea658efe30404051, type: 2}
-  animatorW: {fileID: 0}
+  animatorW: {fileID: 22100000, guid: 8886273b38e29cb4f89c5a094c562d3b, type: 2}
   animatorJD: {fileID: 0}
   animatorJW: {fileID: 0}
   animatorDW: {fileID: 0}
@@ -241,7 +241,7 @@ MonoBehaviour:
   isWallJumpBonusOn: 0
   jumpSpeedXBonus: 1
   jumpSpeedYBonus: 4
-  slowSlide: 0
+  slowSlide: 1
 --- !u!114 &114882301992539750
 MonoBehaviour:
   m_ObjectHideFlags: 1

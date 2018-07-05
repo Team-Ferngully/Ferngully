@@ -79,6 +79,7 @@ public class PlayerAnimHandler : MonoBehaviour {
         else if(isWallJumpPowerupOn == true)
         {
             Debug.Log("using player animator walljump");
+            anim.runtimeAnimatorController = animatorW;
         }
         else
         {

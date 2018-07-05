@@ -1004,6 +1004,10 @@ Prefab:
       value: Player (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1448840056799740, guid: fb449d199d7958840afac16de6bfd163, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448840056799740, guid: fb449d199d7958840afac16de6bfd163, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
