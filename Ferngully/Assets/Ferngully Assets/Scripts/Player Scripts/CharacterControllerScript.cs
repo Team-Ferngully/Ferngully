@@ -455,8 +455,11 @@ public class CharacterControllerScript : MonoBehaviour, IPowerUpChangeListener {
         rigidbody2d.isKinematic = true;
         rigidbody2d.velocity = Vector3.zero;
 
-        //tell animator player is not running
+        //tell animator player is not running, dashing or jumping
+        //this prevents animation issues with power up cabinets
         animHandler.SetIsRunning(false);
+        animHandler.SetIsJumping(false);
+        animHandler.SetIsDashing(false);
 
         this.enabled = false;
     }
