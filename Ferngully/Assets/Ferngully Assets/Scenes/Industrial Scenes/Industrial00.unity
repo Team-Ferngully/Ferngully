@@ -1662,7 +1662,7 @@ Prefab:
     - target: {fileID: 212834738841331620, guid: ba1ccdd8ad47c914a8dff4c30815d25d,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba1ccdd8ad47c914a8dff4c30815d25d, type: 2}
@@ -1963,7 +1963,7 @@ Prefab:
     - target: {fileID: 212773761366203290, guid: e9dd6b83ddc573547b4d2d1a54594bfb,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 11
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4882838668013696, guid: e9dd6b83ddc573547b4d2d1a54594bfb, type: 2}
       propertyPath: m_LocalScale.x
