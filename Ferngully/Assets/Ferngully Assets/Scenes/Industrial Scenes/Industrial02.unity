@@ -399,7 +399,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!212 &714247088
 SpriteRenderer:
@@ -2379,6 +2379,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114491410596190510, guid: 60507bfefbc79e348aedb9bd1888b2de,
+        type: 2}
+      propertyPath: sceneMusicTrack
+      value: 
+      objectReference: {fileID: 8300000, guid: 45b8c3ba033556143822fc4f4fef14cb, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60507bfefbc79e348aedb9bd1888b2de, type: 2}
   m_IsPrefabParent: 0
